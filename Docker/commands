@@ -41,3 +41,56 @@ docker commit <Name column in `docker ps` output> <new image name>
 ==> this one single command is equivalent to
 1. docker commit <container-ID>
 2. docker tag <image-id> <new image name>
+
+==> To delete a container once its main process is done
+docker rum --rm -ti <image-name/image-id> sleep 5
+
+
+==> To run a set of commands on a container and exit
+docker run -ti my-new-image bash -c "sleep 3; echo all done"
+
+Note: This is important 
+==> To run the container in detached mode, means if you want that your container should be running in background
+docker run -d -ti <image-name> bash 
+==>output: a string 
+
+==> Now you know that container bash is running in background but how can I see that So lets do 
+docker ps 
+==>then use name column value and do 
+docker attach <name column value in docker ps command
+
+==> To execute commands on docker images, this wont run a new container for that image instead it runs some existing container 
+docker exec -ti <container-name> bash
+
+
+==> To assign a name to a container run it as
+docker run --name <container-name> <image-id>
+
+==> To check container logs
+docker logs container-name
+
+==> to kill a container
+docker kill container-name
+
+==> To remove a container
+docker rm container-name
+
+Note: We should also remove the container so that if we want to use that container name in future containers than we can easily use it.
+
+Note : Docker can also provides resource constraints
+1. Memory Limits
+docker run --memory <maximum-allowed-memory> <image-name> <command>
+
+2. Cpu Limits
+docker run --cpu-share <relative to other containers>
+docker run --cpu-quota <to limit in general>
+
+Note:  One of the big features of docker is the ability to enforce limits on how many resources a container's gonna use. You can limit it to a fixed amount of memory. You can say docker run --memory maximum-allowed-memory and that prevents runaway containers from clobbering the rest of the system. You can equally limit the CPU time. You can limit relative, you can say give this container half of the total CPU time, and the other one the other half, so that if one's not busy, the other can use more CPU, but then it will enforce that they have equal access. You can also give them hard limits. You can say this container only gets to use 10% of the CPU total ever, even if 90% of the CPU time is idle.
+
+Note: Lessons
+1. Don't let your containers fetch your dependencies when they start.
+2. Don't leave important things in your unnamed stopped containers because if someday your disk is full and u want to remove all stopped containers then you would remove those important things as well.
+
+
+
+
