@@ -1,0 +1,37 @@
+## Tutorial to expose port
+
+## Expose an application that prints the intput at one port as an output on another port
+
+docker run --rm -ti -p 45678:45678 -p 45679:45679 --name echo-server ubuntu:lateshbash 
+
+==> This service takes the input at port 45678 and prints it as the output on port 45679, Now above command will run the bash terminal for that image, so in this you can run the command 
+
+nc -lp 45678 | nc -lp 45679
+
+==> here nc is netcat and lp is listen port, so this above command listen the input on first port and pass it to the second port
+
+so now on separate terminal run  following command 
+nc localhost 45678 on one terminal and nc localhost 45679 on another terminal.
+
+
+==> If you dont have nc installed then simply bash on some image and type 
+nc host.docker.internal 45679
+
+If you dont specify any outside port then just simply type
+docker run --rm -ti -p 45678:45678 -p <insideport>:<outside port> --name echo-server ubuntu:latesh
+bash
+
+docker run --rm -ti -p 45678 -p 45679 --name echo-server ubuntu:latest bash
+
+then in this case docker assign random outside port for iamge echo-server, that we can see using
+
+docker port echo-server
+
+
+## In case of UDP
+
+docker run --rm -ti -p 45678/udp --name echo-server ubuntu:latest bash
+nc -ulp <port-no>
+nc -u localhost <port-no>
+
+
