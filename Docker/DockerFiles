@@ -1,0 +1,11 @@
+1. Dockerfiles are used to create docker images
+2. They are small programs to create an image
+3. To build any docker image from Dockerfile run following command
+	docker build -t name-of-result .
+where . represents the current path of Dockerfile
+
+4. And the resultant image will be stored in local docker registry.
+5. while making image from dockerfile, docker keep the cache of lines that does not changed
+6. Dockerfiles are not shell script
+
+

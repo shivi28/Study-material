@@ -1,0 +1,22 @@
+We have volumes in the docker that is used to store and share data on disc
+
+Basically we have two varities of volumes in the disk
+1. Persistent
+2. Ephemeral
+
+Persistent is the volume that is used to store some permanent data even if container is deleted
+
+Ephemeral is used to store temporary data that is deleted when container is removed or deleted.
+
+No part of volume is involved when we download or upload any image 
+
+## To share the volume in your container
+
+1. create a folder 
+2. link that volume to the container using following command
+docker run --rm -ti -v /Users/shivani.singhal/sharedfolder:/csharedfolder --name demo ubuntu bash
+
+
+--volumes-from  cn be used to share data between containers
+
+

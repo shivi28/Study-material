@@ -1,0 +1,6 @@
+docker images are pushed and pull from registries
+
+You have a container running bash in detached mode. In terminal A, you attach to this container. Next, in terminal B, you 'docker exec bash' to this container. Then, back in terminal A, you exit the session. What happens to the container?
+
+The container and all its processes are terminated.
+

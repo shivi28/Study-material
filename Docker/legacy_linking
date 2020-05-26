@@ -1,0 +1,21 @@
+## To establish the link between two containers
+
+docker run --rm -ti -e SECRET=thenewsecret --name catserver ubuntu:14.04 bash
+
+==> Now create another container having a link to catserver
+
+docker run --rm -ti --link catserver --name dogserver ubuntu:14 bash
+
+==> Now the environment variable mentioned in catserver is also present in dogserver, because cat server is linked to dogserver so all the variables present in catserver will also be available to dogserver 
+
+==> linking is one way only, so all the variables mentioned in container after link command will also be visible in other container.
+
+## To pull all images use 
+
+docker pull 
+
+
+## to Remove docker images use 
+
+docker rmi image-id
+
